@@ -1,13 +1,29 @@
 {
   "name": "@conductive/core",
   "version": "0.0.3",
-  "description": "",
+  "description": "Elegant component framework for Express.js",
   "main": "bin/index.js",
   "scripts": {
     "transpile": "babel ./lib --out-dir bin",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": {
+    "name": "Aeden Murray",
+    "email": "aeden@aedenmurray.io",
+    "url": "https://aedenmurray.io"
+  },
+  "homepage": "https://conductive.dev",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/conductivejs/core"
+  },
+  "keywords": [
+    "express",
+    "framework",
+    "component",
+    "mvc",
+    "web"
+  ],
   "license": "ISC",
   "dependencies": {
     "ajv": "^8.6.2",
@@ -20,6 +36,9 @@
     "@babel/core": "^7.14.8",
     "@babel/preset-env": "^7.14.8"
   },
+  "files": [
+    "bin/**"
+  ],
   "babel": {
     "presets": [
       "@babel/preset-env"
