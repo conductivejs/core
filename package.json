@@ -37,7 +37,6 @@
     "@babel/cli": "^7.14.8",
     "@babel/core": "^7.14.8",
     "@babel/preset-env": "^7.14.8",
-    "babel-preset-minify": "^0.5.1",
     "nodemon": "^2.0.12"
   },
   "files": [
@@ -45,8 +44,7 @@
   ],
   "babel": {
     "presets": [
-      "@babel/preset-env",
-      "minify"
+      "@babel/preset-env"
     ]
   }
 }
