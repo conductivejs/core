@@ -4,6 +4,7 @@
   "description": "Elegant component framework for Express.js",
   "main": "bin/index.js",
   "scripts": {
+    "dev": "nodemon --watch lib --exec npm run transpile",
     "transpile": "babel ./lib --out-dir bin",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -35,7 +36,8 @@
   "devDependencies": {
     "@babel/cli": "^7.14.8",
     "@babel/core": "^7.14.8",
-    "@babel/preset-env": "^7.14.8"
+    "@babel/preset-env": "^7.14.8",
+    "nodemon": "^2.0.12"
   },
   "files": [
     "bin/**"
