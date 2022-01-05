@@ -6,8 +6,10 @@ module.exports = {
     target: 'node',
     resolve: { extensions: ['.js'] },
     output: {
-        path: path.resolve(__dirname, 'bin'),
         filename: 'index.js',
+        path: path.resolve(__dirname, 'bin'),
+        library: '$',
+        libraryTarget: 'umd',
     },
     externals: {
         express: 'express',
