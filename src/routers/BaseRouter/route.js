@@ -33,8 +33,7 @@ export const route = (ajv, router) => (config) => {
         const responseData = await Promise.resolve(handler(request, response, () => {})).catch(next);
 
         if (!response.headersSent) {
-            // TODO: probably more checks here.
-            return response.json(responseData); // TODO: Check data type and set status.
+            return response.json(responseData);
         }
     });
 };
