@@ -1,5 +1,4 @@
 import AJV from 'ajv';
-import addErrorMessages from 'ajv-errors';
 
 import { BaseMiddleware } from '../BaseMiddleware';
 import { GenericError } from '../../errors/GenericError';
