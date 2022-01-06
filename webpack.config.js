@@ -4,6 +4,7 @@ module.exports = {
     entry: './src/index.js',
     mode: 'production',
     target: 'node',
+    devtool: 'eval-source-map',
     resolve: { extensions: ['.js'] },
     output: {
         filename: 'index.js',
@@ -21,9 +22,6 @@ module.exports = {
                 exclude: /node_modules/,
                 use: {
                     loader: 'babel-loader',
-                    options: {
-                        presets: ['@babel/preset-env'],
-                    },
                 },
             },
         ],

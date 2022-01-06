@@ -1,5 +1,3 @@
-export * from './errors';
-export * from './middleware';
-export * from './routers';
-export { application } from './application';
-export { errorHandler } from './errorHandler';
+export { default as application } from './core/application';
+export { default as errorHandler } from './core/errorHandler';
+export { default as router } from './core/router';

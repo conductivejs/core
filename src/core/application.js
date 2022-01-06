@@ -1,7 +1,7 @@
 import cors from 'cors';
 import express from 'express';
 
-export const application = () => {
+export default () => {
     const app = express();
 
     app.use(cors());
