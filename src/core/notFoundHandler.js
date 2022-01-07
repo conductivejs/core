@@ -1,5 +1,5 @@
 import { GenericError } from '../errors';
 
-export default (request) => {
-    throw new GenericError(404, `Invalid path: ${request.path}`);
+export default ({ method, path }) => {
+    throw new GenericError(404, `Not found: ${method} - ${path}`);
 };
