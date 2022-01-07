@@ -1,3 +1,4 @@
+import { options } from './application';
 import { GenericError } from '../errors';
 
 export default (error, request, response, next) => {
@@ -22,6 +23,11 @@ export default (error, request, response, next) => {
         messages = Array.isArray(error)
             ? error.map(({ message }) => message)
             : [error.message];
+    }
+
+    if (!friendly && request.app[options].logging) {
+        // eslint-disable-next-line no-console
+        console.error(error);
     }
 
     return response.status(status).json({ errors: messages });
