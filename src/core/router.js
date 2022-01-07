@@ -2,34 +2,10 @@ import { Router } from 'express';
 import { options } from './application';
 import validateRequest from '../middleware/validateRequest';
 
-const requestStart = Symbol('Determine request execution time.');
+const requestStartTime = Symbol('Determine request execution time.');
 
-const startRequestTimer = (response) => {
-    if (!response.locals[requestStart])
-        response.locals[requestStart] = new Date();
-};
-
-const setupMiddleware = (fn, logFn) => (request, response, next) => {
-    startRequestTimer(response);
-    const log = request.app[options].logging ? logFn : () => {};
-
-    Promise.resolve(fn(request, response, next, log)).then(next).catch(next);
-};
-
-const setupHandler = (fn, logFn) => (request, response, next) => {
-    startRequestTimer(response);
-    const log = request.app[options].logging ? logFn : () => {};
-
-    Promise.resolve(fn(request, response, next, log))
-        .then((responseData = {}) => {
-            const executionTime = new Date() - response.locals[requestStart];
-            log(`Request Finished. (${executionTime}ms)`);
-
-            if (response.headersSent) return next();
-            return response.json(responseData);
-        })
-        .catch(next);
-};
+const logExecutionTime = (request, log) =>
+    log(`Request finished. (${new Date() - request[requestStartTime]})ms`);
 
 export default (wrappedFunction) => {
     const router = Router();
@@ -43,15 +19,46 @@ export default (wrappedFunction) => {
         if (!handler) throw new Error('Missing "handler" from route config!');
         if (schema) middleware.unshift(validateRequest(schema));
 
-        const log = (message) =>
+        const logFn = (message) =>
             // eslint-disable-next-line no-console
             console.log(`${logPrefix || 'Conductive'}: ${message}`);
 
-        middleware.forEach((fn) =>
-            router[method.toLowerCase()](path, setupMiddleware(fn, log))
-        );
+        middleware.forEach((fn) => {
+            router[method.toLowerCase()](path, (request, response, next) => {
+                if (!request[requestStartTime]) {
+                    request[requestStartTime] = new Date();
+                }
 
-        router[method.toLowerCase()](path, setupHandler(handler, log));
+                const loggingEnabled = request.app[options].logging;
+                const log = loggingEnabled ? logFn : () => {};
+
+                Promise.resolve(fn(request, response, next, log))
+                    .then(next)
+                    .catch(next);
+            });
+        });
+
+        router[method.toLowerCase()](path, (request, response, next) => {
+            if (!request[requestStartTime]) {
+                request[requestStartTime] = new Date();
+            }
+
+            const loggingEnabled = request.app[options].logging;
+            const log = loggingEnabled ? logFn : () => {};
+
+            Promise.resolve(handler(request, response, next, log))
+                .then((responseData = {}) => {
+                    logExecutionTime(request, log);
+
+                    return !response.headersSent
+                        ? response.json(responseData)
+                        : next();
+                })
+                .catch((error) => {
+                    logExecutionTime(request, log);
+                    return next(error);
+                });
+        });
     };
 
     wrappedFunction(route);
