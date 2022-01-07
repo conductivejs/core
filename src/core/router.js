@@ -1,19 +1,18 @@
 import { Router } from 'express';
 import { options } from './application';
 import validateRequest from '../middleware/validateRequest';
+import logFn from './logFn';
 
 const requestStartTime = Symbol('Determine request execution time.');
 
-const requestInit = (request, logFn) => {
-    const loggingEnabled = request.app[options].logging;
-    const log = loggingEnabled ? logFn : () => {};
+const getLog = (app, logPrefix) =>
+    app[options].logging ? logFn(logPrefix) : () => {};
 
+const init = (request, log) => {
     if (!request[requestStartTime]) {
         log(`Handling: ${request.method} - ${request.path}`);
         request[requestStartTime] = new Date();
     }
-
-    return { log };
 };
 
 const logExecutionTime = (request, log) =>
@@ -31,13 +30,10 @@ export default (wrappedFunction) => {
         if (!handler) throw new Error('Missing "handler" from route config!');
         if (schema) middleware.unshift(validateRequest(schema));
 
-        const logFn = (message) =>
-            // eslint-disable-next-line no-console
-            console.log(`${logPrefix || 'Conductive'}: ${message}`);
-
         middleware.forEach((fn) => {
             router[method.toLowerCase()](path, (request, response, next) => {
-                const { log } = requestInit(request, logFn);
+                const log = getLog(request.app, logPrefix);
+                init(request, log);
 
                 Promise.resolve(fn(request, response, next, log))
                     .then(next)
@@ -46,7 +42,8 @@ export default (wrappedFunction) => {
         });
 
         router[method.toLowerCase()](path, (request, response, next) => {
-            const { log } = requestInit(request, logFn);
+            const log = getLog(request.app, logPrefix);
+            init(request, log);
 
             Promise.resolve(handler(request, response, next, log))
                 .then((responseData = {}) => {
