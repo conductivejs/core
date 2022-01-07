@@ -11,14 +11,14 @@ const startRequestTimer = (response) => {
 
 const setupMiddleware = (fn, logFn) => (request, response, next) => {
     startRequestTimer(response);
-    const log = request.app[options].loggging ? logFn : () => {};
+    const log = request.app[options].logging ? logFn : () => {};
 
     Promise.resolve(fn(request, response, next, log)).then(next).catch(next);
 };
 
 const setupHandler = (fn, logFn) => (request, response, next) => {
     startRequestTimer(response);
-    const log = request.app[options].loggging ? logFn : () => {};
+    const log = request.app[options].logging ? logFn : () => {};
 
     Promise.resolve(fn(request, response, next, log))
         .then((responseData = {}) => {
