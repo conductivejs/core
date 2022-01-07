@@ -1,5 +1,5 @@
 import { options } from './application';
-import GenericError from '../errors/GenericError';
+import { GenericError } from '../errors';
 
 export default (error, request, response, next) => {
     if (response.headersSent) return next(error);

@@ -1,4 +1,5 @@
 import { babel } from '@rollup/plugin-babel';
+import { nodeResolve } from '@rollup/plugin-node-resolve';
 import { terser } from 'rollup-plugin-terser';
 
 export default {
@@ -16,7 +17,7 @@ export default {
         middleware: ['src/middleware/index.js'],
     },
 
-    plugins: [babel({ babelHelpers: 'runtime' }), terser()],
+    plugins: [babel({ babelHelpers: 'runtime' }), nodeResolve(), terser()],
 
     external: [
         'ajv',
