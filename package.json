@@ -1,0 +1,81 @@
+{
+  "name": "@conductive/core",
+  "version": "0.0.1",
+  "description": "Elegant component framework for Express.js",
+  "exports": {
+    ".": {
+      "require": "./bin/main.cjs.js",
+      "import": "./bin/main.esm.js"
+    },
+    "./errors": {
+      "require": "./bin/errors.cjs.js",
+      "import": "./bin/errors.esm.js"
+    },
+    "./middleware": {
+      "require": "./bin/middleware.cjs.js",
+      "import": "./bin/middleware.esm.js"
+    }
+  },
+  "scripts": {
+    "build": "rollup --config",
+    "deploy": "npm run build && npm publish --access public"
+  },
+  "author": {
+    "name": "Aeden Murray",
+    "email": "aeden@aedenmurray.io",
+    "url": "https://aedenmurray.io"
+  },
+  "homepage": "https://conductive.dev",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/conductivejs/core"
+  },
+  "keywords": [
+    "express",
+    "framework",
+    "component",
+    "mvc",
+    "web"
+  ],
+  "license": "ISC",
+  "dependencies": {
+    "@babel/runtime": "^7.16.7",
+    "@rollup/plugin-commonjs": "^21.0.1",
+    "ajv": "^8.8.2",
+    "ajv-errors": "^3.0.0",
+    "ajv-formats": "^2.1.1",
+    "cors": "^2.8.5",
+    "express": "^4.17.2",
+    "helmet": "^5.0.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.16.7",
+    "@babel/core": "^7.16.7",
+    "@babel/eslint-parser": "^7.16.5",
+    "@babel/plugin-transform-runtime": "^7.16.7",
+    "@babel/preset-env": "^7.16.7",
+    "@rollup/plugin-babel": "^5.3.0",
+    "@rollup/plugin-node-resolve": "^13.1.3",
+    "babel-loader": "^8.2.3",
+    "eslint": "^8.6.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-prettier": "^4.0.0",
+    "rollup": "^2.63.0",
+    "rollup-plugin-delete": "^2.0.0",
+    "rollup-plugin-node-externals": "^3.1.2",
+    "rollup-plugin-terser": "^7.0.2"
+  },
+  "files": [
+    "bin/**"
+  ],
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ],
+    "plugins": [
+      "@babel/plugin-transform-runtime"
+    ]
+  }
+}
