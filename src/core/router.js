@@ -10,7 +10,7 @@ const getLog = (app, logPrefix) =>
 
 const init = (request, log) => {
     if (!request[requestStartTime]) {
-        log(`Handling: ${request.method} - ${request.path}`);
+        log(`Handling: ${request.method} - ${request.baseUrl}${request.path}`);
         request[requestStartTime] = new Date();
     }
 };
