@@ -4,8 +4,20 @@ import validateRequest from '../middleware/validateRequest';
 
 const requestStartTime = Symbol('Determine request execution time.');
 
+const requestInit = (request, logFn) => {
+    const loggingEnabled = request.app[options].logging;
+    const log = loggingEnabled ? logFn : () => {};
+
+    if (!request[requestStartTime]) {
+        log(`Handling: ${request.method} - ${request.path}`);
+        request[requestStartTime] = new Date();
+    }
+
+    return { log };
+};
+
 const logExecutionTime = (request, log) =>
-    log(`Request finished. (${new Date() - request[requestStartTime]})ms`);
+    log(`Request finished. (${new Date() - request[requestStartTime]}ms)`);
 
 export default (wrappedFunction) => {
     const router = Router();
@@ -25,12 +37,7 @@ export default (wrappedFunction) => {
 
         middleware.forEach((fn) => {
             router[method.toLowerCase()](path, (request, response, next) => {
-                if (!request[requestStartTime]) {
-                    request[requestStartTime] = new Date();
-                }
-
-                const loggingEnabled = request.app[options].logging;
-                const log = loggingEnabled ? logFn : () => {};
+                const { log } = requestInit(request, logFn);
 
                 Promise.resolve(fn(request, response, next, log))
                     .then(next)
@@ -39,12 +46,7 @@ export default (wrappedFunction) => {
         });
 
         router[method.toLowerCase()](path, (request, response, next) => {
-            if (!request[requestStartTime]) {
-                request[requestStartTime] = new Date();
-            }
-
-            const loggingEnabled = request.app[options].logging;
-            const log = loggingEnabled ? logFn : () => {};
+            const { log } = requestInit(request, logFn);
 
             Promise.resolve(handler(request, response, next, log))
                 .then((responseData = {}) => {
