@@ -9,14 +9,14 @@ export default {
         {
             dir: 'bin/cjs',
             format: 'cjs',
-            entryFileNames: '[name].cjs',
-            chunkFileNames: '[name].cjs',
+            entryFileNames: '[name].js',
+            chunkFileNames: '[name].js',
         },
         {
             dir: 'bin/mjs',
             format: 'esm',
-            entryFileNames: '[name].mjs',
-            chunkFileNames: '[name].mjs',
+            entryFileNames: '[name].js',
+            chunkFileNames: '[name].js',
         },
     ],
 
