@@ -5,21 +5,12 @@ import { terser } from 'rollup-plugin-terser';
 export default {
     input: 'src/core.js',
 
-    output: [
-        {
-            dir: 'bin/commonjs',
-            format: 'cjs',
-            entryFileNames: '[name].cjs',
-            chunkFileNames: '[name].cjs',
-        },
-
-        {
-            dir: 'bin/esm',
-            format: 'esm',
-            entryFileNames: '[name].js',
-            chunkFileNames: '[name].js',
-        },
-    ],
+    output: {
+        dir: 'bin/',
+        format: 'cjs',
+        entryFileNames: '[name].js',
+        chunkFileNames: '[name].js',
+    },
 
     manualChunks: {
         errors: ['src/errors/index.js'],
