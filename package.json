@@ -3,19 +3,19 @@
   "version": "0.0.19",
   "description": "Elegant component framework for Express.js",
   "type": "module",
-  "main": "./bin/commonjs/core.js",
+  "main": "./bin/commonjs/core.cjs",
   "module": "./bin/esm/core.js",
   "exports": {
     ".": {
-      "require": "./bin/commonjs/core.js",
+      "require": "./bin/commonjs/core.cjs",
       "import": "./bin/esm/core.js"
     },
     "./errors": {
-      "require": "./bin/commonjs/errors.js",
+      "require": "./bin/commonjs/errors.cjs",
       "import": "./bin/esm/errors.js"
     },
     "./middleware": {
-      "require": "./bin/commonjs/middleware.js",
+      "require": "./bin/commonjs/middleware.cjs",
       "import": "./bin/esm/middleware.js"
     }
   },

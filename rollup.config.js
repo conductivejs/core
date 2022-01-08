@@ -9,8 +9,8 @@ export default {
         {
             dir: 'bin/commonjs',
             format: 'cjs',
-            entryFileNames: '[name].js',
-            chunkFileNames: '[name].js',
+            entryFileNames: '[name].cjs',
+            chunkFileNames: '[name].cjs',
         },
 
         {
