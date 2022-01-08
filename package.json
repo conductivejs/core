@@ -7,7 +7,7 @@
   "scripts": {
     "lint": "eslint",
     "build": "rm -rf bin && rollup --config",
-    "prepublish": "npm run build"
+    "prepublishOnly": "npm run build"
   },
   "author": {
     "name": "Aeden Murray",
