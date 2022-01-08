@@ -8,7 +8,14 @@
     ".": {
       "import": "./bin/core.mjs",
       "require": "./bin/core.cjs"
-    }
+    },
+    "./errors": [
+      {
+        "import": "./bin/errors.mjs",
+        "require": "./bin/errors.cjs"
+      },
+      "./bin/errors.cjs"
+    ]
   },
   "scripts": {
     "lint": "eslint",
