@@ -5,7 +5,6 @@
   "main": "./bin/core.cjs",
   "module": "./bin/core.mjs",
   "scripts": {
-    "lint": "eslint",
     "build": "rm -rf bin && rollup --config",
     "prepublishOnly": "npm run build"
   },
