@@ -7,16 +7,16 @@ export default {
 
     output: [
         {
-            dir: 'bin/cjs',
+            dir: 'bin',
             format: 'cjs',
-            entryFileNames: '[name].js',
-            chunkFileNames: '[name].js',
+            entryFileNames: '[name].cjs',
+            chunkFileNames: '[name].cjs',
         },
         {
-            dir: 'bin/mjs',
+            dir: 'bin',
             format: 'esm',
-            entryFileNames: '[name].js',
-            chunkFileNames: '[name].js',
+            entryFileNames: '[name].mjs',
+            chunkFileNames: '[name].mjs',
         },
     ],
 
