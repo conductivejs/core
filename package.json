@@ -3,20 +3,20 @@
   "version": "0.0.17",
   "description": "Elegant component framework for Express.js",
   "type": "module",
-  "main": "./bin/cjs/core.js",
-  "module": "./bin/mjs/core.js",
+  "main": "./bin/core.js",
+  "module": "./bin/core.mjs",
   "exports": {
     ".": {
-      "require": "./bin/cjs/core.js",
-      "import": "./bin/mjs/core.js"
+      "require": "./bin/core.js",
+      "import": "./bin/core.mjs"
     },
     "./errors": {
-      "require": "./bin/cjs/errors.js",
-      "import": "./bin/mjs/errors.js"
+      "require": "./bin/errors.js",
+      "import": "./bin/errors.mjs"
     },
     "./middleware": {
-      "require": "./bin/cjs/middleware.js",
-      "import": "./bin/mjs/middleware.js"
+      "require": "./bin/middleware.js",
+      "import": "./bin/middleware.mjs"
     }
   },
   "scripts": {
