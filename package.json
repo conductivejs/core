@@ -2,10 +2,21 @@
   "name": "@conductive/core",
   "version": "0.0.13",
   "description": "Elegant component framework for Express.js",
+  "main": "./bin/cjs/core.cjs",
+  "module": "./bin/mjs/core.mjs",
   "exports": {
-    ".": "./bin/core.cjs",
-    "./errors": "./bin/errors.cjs",
-    "./middleware": "./bin/middleware.cjs"
+    ".": {
+      "require": "./bin/cjs/core.cjs",
+      "import": "./bin/mjs/core.mjs"
+    },
+    "./errors": {
+      "require": "./bin/cjs/errors.cjs",
+      "import": "./bin/mjs/errors.mjs"
+    },
+    "./middleware": {
+      "require": "./bin/cjs/middleware.cjs",
+      "import": "./bin/mjs/middleware.mjs"
+    }
   },
   "scripts": {
     "lint": "eslint",
