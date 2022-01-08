@@ -2,22 +2,8 @@
   "name": "@conductive/core",
   "version": "0.0.27",
   "description": "Elegant component framework for Express.js",
-  "main": "./bin/commonjs/core.js",
-  "module": "./bin/esm/core.js",
-  "exports": {
-    ".": {
-      "import": "./bin/esm/core.js",
-      "require": "./bin/commonjs/core.js"
-    },
-    "./errors": {
-      "import": "./bin/esm/errors.js",
-      "require": "./bin/commonjs/errors.js"
-    },
-    "./middleware": {
-      "import": "./bin/esm/middleware.js",
-      "require": "./bin/commonjs/middleware.js"
-    }
-  },
+  "main": "./bin/core.cjs",
+  "module": "./bin/core.mjs",
   "scripts": {
     "lint": "eslint",
     "build": "rm -rf bin && rollup --config",
@@ -50,10 +36,6 @@
     "helmet": "^5.0.1"
   },
   "devDependencies": {
-    "@babel/cli": "^7.16.7",
-    "@babel/core": "^7.16.7",
-    "@babel/plugin-transform-runtime": "^7.16.7",
-    "@babel/preset-env": "^7.16.7",
     "@rollup/plugin-node-resolve": "^13.1.3",
     "eslint": "^8.6.0",
     "eslint-config-airbnb-base": "^15.0.0",
@@ -63,20 +45,5 @@
   },
   "files": [
     "bin/**"
-  ],
-  "babel": {
-    "presets": [
-      [
-        "@babel/preset-env",
-        {
-          "targets": {
-            "node": 14
-          }
-        }
-      ]
-    ],
-    "plugins": [
-      "@babel/plugin-transform-runtime"
-    ]
-  }
+  ]
 }

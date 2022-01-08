@@ -3,36 +3,20 @@ import { terser } from 'rollup-plugin-terser';
 
 export default {
     input: 'src/core.js',
+    plugins: [nodeResolve(), terser()],
 
     output: [
         {
-            dir: 'bin/commonjs',
+            dir: 'bin',
             format: 'cjs',
-            entryFileNames: '[name].js',
-            chunkFileNames: '[name].js',
+            entryFileNames: 'core.cjs',
         },
         {
-            dir: 'bin/esm',
+            dir: 'bin',
             format: 'esm',
-            entryFileNames: '[name].js',
-            chunkFileNames: '[name].js',
+            entryFileNames: 'core.mjs',
         },
     ],
 
-    manualChunks: {
-        errors: ['src/errors/index.js'],
-        middleware: ['src/middleware/index.js'],
-    },
-
-    plugins: [nodeResolve(), terser()],
-
-    external: [
-        'ajv',
-        'ajv-formats',
-        'ajv-errors',
-        'cors',
-        'helmet',
-        'express',
-        /@babel\/runtime/,
-    ],
+    external: ['ajv', 'ajv-formats', 'ajv-errors', 'cors', 'helmet', 'express'],
 };
