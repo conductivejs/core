@@ -2,8 +2,22 @@
   "name": "@conductive/core",
   "version": "0.0.30",
   "description": "Elegant component framework for Express.js",
-  "main": "./bin/core.cjs",
-  "module": "./bin/core.mjs",
+  "main": "./bin/commonjs/core.js",
+  "module": "./bin/esm/core.js",
+  "exports": {
+    ".": {
+      "require": "./bin/commonjs/core.js",
+      "import": "./bin/esm/core.js"
+    },
+    "./errors": {
+      "require": "./bin/commonjs/errors.js",
+      "import": "./bin/esm/errors.js"
+    },
+    "./middleware": {
+      "require": "./bin/commonjs/middleware.js",
+      "import": "./bin/esm/middleware.js"
+    }
+  },
   "scripts": {
     "build": "rm -rf bin && rollup --config",
     "prepublishOnly": "npm run build"

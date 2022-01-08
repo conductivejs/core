@@ -7,16 +7,23 @@ export default {
 
     output: [
         {
-            dir: 'bin',
+            dir: 'bin/commonjs',
             format: 'cjs',
-            entryFileNames: 'core.cjs',
+            entryFileNames: '[name].js',
+            chunkFileNames: '[name].js',
         },
         {
-            dir: 'bin',
+            dir: 'bin/esm',
             format: 'esm',
-            entryFileNames: 'core.mjs',
+            entryFileNames: '[name].js',
+            chunkFileNames: '[name].js',
         },
     ],
+
+    manualChunks: {
+        errors: ['./src/errors/index.js'],
+        middleware: ['./src/middleware/index.js'],
+    },
 
     external: ['ajv', 'ajv-formats', 'ajv-errors', 'cors', 'helmet', 'express'],
 };
