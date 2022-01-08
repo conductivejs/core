@@ -19,6 +19,11 @@ export default {
         },
     ],
 
+    manualChunks: {
+        errors: ['src/errors/index.js'],
+        middleware: ['src/middleware/index.js'],
+    },
+
     plugins: [nodeResolve(), terser()],
 
     external: [

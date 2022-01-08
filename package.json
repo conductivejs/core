@@ -4,6 +4,12 @@
   "description": "Elegant component framework for Express.js",
   "main": "./bin/core.cjs",
   "module": "./bin/core.mjs",
+  "exports": {
+    ".": {
+      "import": "./bin/core.mjs",
+      "require": "./bin/core.cjs"
+    }
+  },
   "scripts": {
     "lint": "eslint",
     "build": "rm -rf bin && rollup --config",
@@ -38,7 +44,6 @@
   "devDependencies": {
     "@babel/cli": "^7.16.7",
     "@babel/core": "^7.16.7",
-    "@babel/eslint-parser": "^7.16.5",
     "@babel/plugin-transform-runtime": "^7.16.7",
     "@babel/preset-env": "^7.16.7",
     "@rollup/plugin-node-resolve": "^13.1.3",
