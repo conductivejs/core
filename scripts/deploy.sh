@@ -29,8 +29,8 @@ if [ $? -ne 0 ]; then error; fi;
 copy_chunks_to_root
 if [ $? -ne 0 ]; then error; fi;
 
-# npm publish
-# if [ $? -ne 0 ]; then; error fi;
+npm publish
+if [ $? -ne 0 ]; then error; fi;
 
 remove_chunks_from_root
 if [ $? -ne 0 ]; then error; fi;
