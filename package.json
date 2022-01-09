@@ -2,6 +2,7 @@
   "name": "@conductive/core",
   "version": "0.0.32",
   "description": "Elegant component framework for Express.js",
+  "main": "./bin/core.js",
   "exports": {
     ".": "./bin/core.js",
     "./errors": "./bin/errors.js",
@@ -9,7 +10,8 @@
   },
   "scripts": {
     "build": "rm -rf bin && rollup --config",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build && cp bin/errors.js errors.js && cp bin/middleware.js middleware.js",
+    "postpublish": "rm errors.js middleware.js"
   },
   "author": {
     "name": "Aeden Murray",
