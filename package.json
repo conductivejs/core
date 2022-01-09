@@ -2,17 +2,15 @@
   "name": "@conductive/core",
   "version": "0.0.35",
   "description": "Elegant component framework for Express.js",
-  "type": "commonjs",
-  "main": "./bin/core.js",
+  "main": "./core.js",
   "exports": {
-    ".": "./bin/core.js",
-    "./errors": "./bin/errors.js",
-    "./middleware": "./bin/middleware.js"
+    ".": "./core.js",
+    "./errors": "./errors.js",
+    "./middleware": "./middleware.js"
   },
   "scripts": {
-    "build": "rm -rf bin && rollup --config",
-    "prepublishOnly": "npm run build && cp bin/errors.js errors.js && cp bin/middleware.js middleware.js",
-    "postpublish": "rm errors.js middleware.js"
+    "build": "./scripts/build.sh",
+    "deploy": "./scripts/deploy.sh"
   },
   "author": {
     "name": "Aeden Murray",
@@ -44,6 +42,10 @@
     "helmet": "^5.0.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.16.7",
+    "@babel/plugin-transform-runtime": "^7.16.7",
+    "@babel/preset-env": "^7.16.7",
+    "@rollup/plugin-babel": "^5.3.0",
     "@rollup/plugin-node-resolve": "^13.1.3",
     "eslint": "^8.6.0",
     "eslint-config-airbnb-base": "^15.0.0",
@@ -52,8 +54,24 @@
     "rollup-plugin-terser": "^7.0.2"
   },
   "files": [
-    "bin/**",
+    "core.js",
     "errors.js",
-    "middleware.js"
-  ]
+    "middleware.js",
+    "*.js.map"
+  ],
+  "babel": {
+    "plugins": [
+      "@babel/plugin-transform-runtime"
+    ],
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "node": "12"
+          }
+        }
+      ]
+    ]
+  }
 }
