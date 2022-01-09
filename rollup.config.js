@@ -5,20 +5,12 @@ export default {
     input: 'src/core.js',
     plugins: [nodeResolve(), terser()],
 
-    output: [
-        {
-            dir: 'bin/commonjs',
-            format: 'cjs',
-            entryFileNames: '[name].js',
-            chunkFileNames: '[name].js',
-        },
-        {
-            dir: 'bin/esm',
-            format: 'esm',
-            entryFileNames: '[name].js',
-            chunkFileNames: '[name].js',
-        },
-    ],
+    output: {
+        dir: 'bin',
+        format: 'cjs',
+        entryFileNames: '[name].js',
+        chunkFileNames: '[name].js',
+    },
 
     manualChunks: {
         errors: ['./src/errors/index.js'],
