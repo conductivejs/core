@@ -29,6 +29,7 @@ if [ $? -ne 0 ]; then error; fi;
 copy_chunks_to_root
 if [ $? -ne 0 ]; then error; fi;
 
+echo "[*] Deploying..."
 npm publish
 if [ $? -ne 0 ]; then error; fi;
 
