@@ -28,7 +28,7 @@ export default (wrappedFunction) => {
         if (!path) throw new Error('Missing "path" from route config!');
         if (!method) throw new Error('Missing "method" from route config!');
         if (!handler) throw new Error('Missing "handler" from route config!');
-        // if (schema) middleware.unshift(validateRequest(schema));
+        if (schema) middleware.unshift(validateRequest(schema));
 
         middleware.forEach((fn) => {
             router[method.toLowerCase()](path, (request, response, next) => {
