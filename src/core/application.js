@@ -21,7 +21,7 @@ export default (config = {}) => {
                 request.method.toUpperCase &&
                 request.method.toUpperCase();
 
-            if (method === 'OPTIIONS') {
+            if (method === 'OPTIONS') {
                 log('Handling CORS request...');
             }
 
