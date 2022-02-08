@@ -4,13 +4,13 @@ import ajvFormats from 'ajv-formats';
 import GenericError from '../errors/GenericError';
 
 export default (schema) => {
+    const requestProperties = Object.keys(schema);
     const ajv = new AJV({ allErrors: true });
     ajvErrors(ajv);
     ajvFormats(ajv);
 
-    const requestProperties = Object.keys(schema);
-    return (request, response, next, log) => {
-        log('Validating schema...');
+    return (request) => {
+        console.log('Validating schema...');
 
         requestProperties.forEach((property) => {
             const propertyData = request[property];
@@ -22,6 +22,6 @@ export default (schema) => {
             }
         });
 
-        log('Finished validating schema.');
+        console.log('Finished validating schema.');
     };
 };
