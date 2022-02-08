@@ -10,8 +10,6 @@ export default (schema) => {
     ajvFormats(ajv);
 
     return (request) => {
-        console.log('Validating schema...');
-
         requestProperties.forEach((property) => {
             const propertyData = request[property];
             const propertySchema = schema[property];
@@ -21,7 +19,5 @@ export default (schema) => {
                 );
             }
         });
-
-        console.log('Finished validating schema.');
     };
 };
