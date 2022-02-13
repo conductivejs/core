@@ -19,7 +19,6 @@ function remove_chunks_from_root {
     rm core.js
     rm errors.js
     rm middleware.js
-    rm *.js.map
 }
 
 npm run build
