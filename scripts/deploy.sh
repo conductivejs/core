@@ -12,7 +12,6 @@ function copy_chunks_to_root {
 
     echo '[*] Copying chunks to root...'  
     cp bin/*.js .
-    cp bin/*.js.map .
 }
 
 function remove_chunks_from_root {
