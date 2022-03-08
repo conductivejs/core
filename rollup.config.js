@@ -1,12 +1,8 @@
 import { nodeResolve } from '@rollup/plugin-node-resolve';
-import { terser } from 'rollup-plugin-terser';
 
 export default {
     input: 'src/index.js',
-    plugins: [
-        nodeResolve(),
-        // terser(),
-    ],
+    plugins: [nodeResolve()],
 
     output: {
         dir: 'bin',
