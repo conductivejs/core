@@ -5,7 +5,7 @@ export default {
     input: 'src/index.js',
     plugins: [
         nodeResolve(),
-        terser(),
+        // terser(),
     ],
 
     output: {
@@ -14,7 +14,7 @@ export default {
         entryFileNames: 'core.js',
         chunkFileNames: '[name].js',
         minifyInternalExports: false,
-        sourcemap: false
+        sourcemap: false,
     },
 
     manualChunks: {
