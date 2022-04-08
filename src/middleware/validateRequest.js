@@ -1,11 +1,13 @@
 import AJV from 'ajv';
 import ajvErrors from 'ajv-errors';
 import ajvFormats from 'ajv-formats';
+import ajvKeywords from 'ajv-keywords';
 import GenericError from '../errors/GenericError';
 
 const ajv = new AJV({ allErrors: true });
 ajvErrors(ajv);
 ajvFormats(ajv);
+ajvKeywords(ajv);
 
 export default (schema) => {
     const compiledValidationFunctions = {};
