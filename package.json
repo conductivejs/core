@@ -1,6 +1,6 @@
 {
   "name": "@conductive/core",
-  "version": "0.0.52",
+  "version": "0.0.53",
   "description": "Elegant component framework for Express.js",
   "type": "module",
   "main": "./core.js",
