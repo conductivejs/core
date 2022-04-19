@@ -4,7 +4,11 @@ import ajvFormats from 'ajv-formats';
 import ajvKeywords from 'ajv-keywords';
 import GenericError from '../errors/GenericError';
 
-const ajv = new AJV({ allErrors: true });
+const ajv = new AJV({
+    allErrors: true,
+    discriminator: true,
+});
+
 ajvErrors(ajv);
 ajvFormats(ajv);
 ajvKeywords(ajv);
